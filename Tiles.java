@@ -58,18 +58,27 @@ public class Tiles implements ActionListener
     a.setVisible(true); 
     }
 
-    // invoked when action occurs - identify which button has been clicked
+    /**
+    * actionperformed is function performed when buttons are clicked
+    * button b is clicked button
+    * location of the button clicked is stored - position in the array
+    * puts the icon on the corrosponding image on the blank tile
+    **/
     public void actionPerformed(ActionEvent click)
     {
       for (int b=0; b<12; b++)
       {
-        if ((click.getSource() == button[b])
-        {
-          for (int location=0; location<12; location++)
-          {
-            if(button[b].getIcon() == icon[location])
+        if ((click.getSource() == button[b]) && 
+        (b == blankTile+1 || b == blankTile-1 || b == blankTile+4 || b == blankTile-4)){
+          if ((b == 3 && blankTile == 4) || (b == 4 && blankTile == 3) ||
+              (b == 7 && blankTile == 8) || (b == 8 && blankTile == 7)){
+              ;}
+            else{
+            for (int location=0; location<12; location++)
             {
-              store = location;
+              if(button[b].getIcon() == icon[location])
+              {
+                store = location;
           }
         }
           button[b].setIcon(icon[0]);
@@ -79,5 +88,7 @@ public class Tiles implements ActionListener
     } 
   }
 }
+}
+
 
 
