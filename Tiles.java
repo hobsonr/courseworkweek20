@@ -5,13 +5,17 @@ import java.awt.event.*;
 
 /**
 *Tiles implements the ActionListener within the JButtons
-*Tiles also defines the array of JButtons
+*Tiles also defines the array of JButtons from 0 to 11
+*an array of imageicons has also been created
 *When "click" is clicked, the image swaps with blankTile
 **/
 
 public class Tiles implements ActionListener
 {
   JButton button[] = new JButton[12];
+  ImageIcon icon[] = new ImageIcon[12];
+  int store = 0;
+  int blankTile = 0;
 
   /**
   *Tiles class creates a new GUI 
@@ -44,9 +48,10 @@ public class Tiles implements ActionListener
 
     // images as jbuttons in an array
     for (b=0; b<12; b++){
-      ImageIcon i = new ImageIcon("bart"+b+".jpg");
-      button[b] = new JButton(i);
+      icon[b] = (new ImageIcon("bart"+b+".jpg"));
+      button[b] = new JButton();
       panel.add(button[b]);
+      button[b].setIcon(icon[b]);
       button[b].addActionListener(this);
       }
 
@@ -54,24 +59,22 @@ public class Tiles implements ActionListener
     }
 
     // invoked when action occurs - identify which button has been clicked
-
-    public void actionPerformed(ActionEvent click){
-      ImageIcon temp;
-      //ImageIcon tempBlank;
-      int blankTile = 0;
-
-      for (int b=0; b<12; b++){
-        if (click.getSource() == button[b]){
-
-            //System.out.println("Clicked:"+b); test for buttons
-            temp = (ImageIcon)button[b].getIcon(); 
-            //tempBlank = (ImageIcon)button[blankTile].getIcon();
-            button[blankTile].setIcon(button[b].getIcon());
-            button[b].setIcon(button[blankTile].getIcon());
-            button[blankTile].setIcon(temp);
-            //button[b].setIcon(tempBlank);
-            blankTile = b;
-        
+    public void actionPerformed(ActionEvent click)
+    {
+      for (int b=0; b<12; b++)
+      {
+        if ((click.getSource() == button[b])
+        {
+          for (int location=0; location<12; location++)
+          {
+            if(button[b].getIcon() == icon[location])
+            {
+              store = location;
+          }
+        }
+          button[b].setIcon(icon[0]);
+          button[blankTile].setIcon(icon[store]);
+          blankTile = b;        
       }
     } 
   }
