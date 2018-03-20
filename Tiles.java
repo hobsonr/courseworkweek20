@@ -38,29 +38,24 @@ public class Tiles implements ActionListener
     }
 
     // invoked when action occurs - identify which button has been clicked
-    int blankTile = 0;
 
     public void actionPerformed(ActionEvent click){
-      for (int b=0; b<12; b++){
-        //public checkButton();
-        //if (checkButton = true) && 
-        if (click.getSource() == button[b]){
-          //int temp;
-          //System.out.println("Clicked:"+b); test for buttons
-          button[b].getIcon();
-          button[blankTile].getIcon();
-          button[blankTile].setIcon(button[b].getIcon());
-          button[b].setIcon(button[blankTile].getIcon());
-          blankTile = b;
-          //b = blankTile;
-      }
-    }
+      ImageIcon temp;
+      int blankTile = 0;
 
-    // validation
-    //public boolean checkButton{
-    //if (c == e+1) || (c == e-1) || (c == e+4) || (c == e-4){
-      //checkButton = true;
-    //}  
+      for (int b=0; b<12; b++){
+        if (click.getSource() == button[b]){
+          //if(((ImageIcon)button[b].getIcon()).toString().equals("bart0.jpg")){
+            //blankTile = b;
+      //}       
+            //System.out.println("Clicked:"+b); test for buttons
+            temp = (ImageIcon)button[b].getIcon();
+            button[blankTile].setIcon(button[b].getIcon());
+            button[b].setIcon(button[blankTile].getIcon());
+            button[blankTile].setIcon(temp);
+            button[blankTile] = button[b];
+      }
+    } 
   }
 }
 
