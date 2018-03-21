@@ -14,7 +14,7 @@ public class Tiles implements ActionListener
 {
   JButton button[] = new JButton[12];
   ImageIcon icon[] = new ImageIcon[12];
-  int store = 0;
+  int temp = 0;
   int blankTile = 0;
 
   /**
@@ -46,7 +46,7 @@ public class Tiles implements ActionListener
     GridLayout layout = new GridLayout(3,4);
     panel.setLayout(layout);
 
-    // images as jbuttons in an array
+    // create an array of JButtons and an array of icons
     for (b=0; b<12; b++){
       icon[b] = (new ImageIcon("bart"+b+".jpg"));
       button[b] = new JButton();
@@ -68,26 +68,26 @@ public class Tiles implements ActionListener
     {
       for (int b=0; b<12; b++)
       {
-        if ((click.getSource() == button[b]) && 
+        if ((click.getSource() == button[b]) &&         
         (b == blankTile+1 || b == blankTile-1 || b == blankTile+4 || b == blankTile-4)){
           if ((b == 3 && blankTile == 4) || (b == 4 && blankTile == 3) ||
-              (b == 7 && blankTile == 8) || (b == 8 && blankTile == 7)){
-              ;}
-            else{
+             (b == 7 && blankTile == 8) || (b == 8 && blankTile == 7)){
+             System.out.println("wrong move");}
+          else{
             for (int location=0; location<12; location++)
             {
               if(button[b].getIcon() == icon[location])
               {
-                store = location;
+                temp = location;
+            }
           }
-        }
           button[b].setIcon(icon[0]);
-          button[blankTile].setIcon(icon[store]);
+          button[blankTile].setIcon(icon[temp]);
           blankTile = b;        
-      }
-    } 
+        }
+      } 
+    }
   }
-}
 }
 
 
